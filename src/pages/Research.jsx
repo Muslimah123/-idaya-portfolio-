@@ -1,13 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 function Research() {
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   return (
     <div style={{
       minHeight: '100vh',
       background: 'linear-gradient(135deg, #0B1120 0%, #111827 100%)',
       fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-      padding: '20px'
+      padding: isMobile ? '12px' : '20px'
     }}>
       {/* Navigation Header */}
       <header style={{
@@ -18,8 +31,10 @@ function Research() {
           maxWidth: '1200px',
           margin: '0 auto',
           display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center'
+          flexDirection: isMobile ? 'column' : 'row',
+          justifyContent: isMobile ? 'center' : 'space-between',
+          alignItems: 'center',
+          gap: isMobile ? '16px' : '0'
         }}>
                      <Link to="/" style={{
              display: 'flex',
@@ -69,7 +84,9 @@ function Research() {
            </Link>
           <nav style={{
             display: 'flex',
-            gap: '20px'
+            gap: isMobile ? '12px' : '20px',
+            flexWrap: isMobile ? 'wrap' : 'nowrap',
+            justifyContent: 'center'
           }}>
                          <Link to="/" style={{ color: 'rgba(255,255,255,0.8)', textDecoration: 'none' }}>Home</Link>
              <Link to="/about" style={{ color: 'rgba(255,255,255,0.8)', textDecoration: 'none' }}>About</Link>
@@ -89,14 +106,14 @@ function Research() {
         <div style={{
           background: 'rgba(31, 41, 55, 0.9)',
           backdropFilter: 'blur(20px)',
-          padding: '60px',
+          padding: isMobile ? '32px' : '60px',
           borderRadius: '20px',
           boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
           animation: 'fadeInUp 1s ease-out',
           border: '1px solid rgba(96, 165, 250, 0.2)'
         }}>
           <h1 style={{
-            fontSize: '42px',
+            fontSize: isMobile ? '32px' : '42px',
             fontWeight: '800',
             background: 'linear-gradient(135deg, #3B82F6 0%, #A855F7 100%)',
             WebkitBackgroundClip: 'text',

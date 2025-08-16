@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   Code, 
@@ -16,6 +16,18 @@ import {
 } from 'lucide-react';
 
 function Projects() {
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
   // Projects data
   const projects = [
     {
@@ -152,7 +164,7 @@ function Projects() {
       minHeight: '100vh',
       background: 'linear-gradient(135deg, #0B1120 0%, #111827 100%)',
       fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-      padding: '20px'
+      padding: isMobile ? '12px' : '20px'
     }}>
       {/* Navigation Header */}
       <header style={{
@@ -163,8 +175,10 @@ function Projects() {
           maxWidth: '1200px',
           margin: '0 auto',
           display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center'
+          flexDirection: isMobile ? 'column' : 'row',
+          justifyContent: isMobile ? 'center' : 'space-between',
+          alignItems: 'center',
+          gap: isMobile ? '16px' : '0'
         }}>
                      <Link to="/" style={{
              display: 'flex',
@@ -214,7 +228,9 @@ function Projects() {
            </Link>
           <nav style={{
             display: 'flex',
-            gap: '20px'
+            gap: isMobile ? '12px' : '20px',
+            flexWrap: isMobile ? 'wrap' : 'nowrap',
+            justifyContent: 'center'
           }}>
                          <Link to="/" style={{ color: 'rgba(255,255,255,0.8)', textDecoration: 'none' }}>Home</Link>
              <Link to="/about" style={{ color: 'rgba(255,255,255,0.8)', textDecoration: 'none' }}>About</Link>
@@ -237,22 +253,23 @@ function Projects() {
           marginBottom: '50px'
         }}>
           <h1 style={{
-            fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
+            fontSize: isMobile ? 'clamp(2rem, 8vw, 2.5rem)' : 'clamp(2.5rem, 5vw, 3.5rem)',
             fontWeight: '800',
             background: 'linear-gradient(135deg, #3B82F6 0%, #A855F7 100%)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
             backgroundClip: 'text',
-            marginBottom: '20px'
+            marginBottom: isMobile ? '16px' : '20px'
           }}>
             Project Portfolio
           </h1>
           <p style={{
-            fontSize: '18px',
+            fontSize: isMobile ? '16px' : '18px',
             color: '#d1d5db',
             maxWidth: '700px',
             margin: '0 auto',
-            lineHeight: '1.6'
+            lineHeight: '1.6',
+            padding: isMobile ? '0 16px' : '0'
           }}>
             A showcase of my technical projects spanning healthcare AI, data analytics, backend development, and software engineering
           </p>
@@ -262,8 +279,8 @@ function Projects() {
         <div style={{
           display: 'flex',
           justifyContent: 'center',
-          gap: '16px',
-          marginBottom: '40px',
+          gap: isMobile ? '12px' : '16px',
+          marginBottom: isMobile ? '32px' : '40px',
           flexWrap: 'wrap'
         }}>
           {categories.map((category) => (
@@ -310,8 +327,8 @@ function Projects() {
         {/* Projects Grid */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
-          gap: '30px',
+          gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(350px, 1fr))',
+          gap: isMobile ? '20px' : '30px',
           marginBottom: '50px'
         }}>
           {filteredProjects.map((project, index) => (

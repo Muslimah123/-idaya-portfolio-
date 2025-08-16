@@ -1,13 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 function About() {
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   return (
     <div style={{
       minHeight: '100vh',
       background: 'linear-gradient(135deg, #0B1120 0%, #111827 100%)',
       fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-      padding: '20px'
+      padding: isMobile ? '12px' : '20px'
     }}>
       {/* Navigation Header */}
       <header style={{
@@ -18,8 +31,10 @@ function About() {
           maxWidth: '1200px',
           margin: '0 auto',
           display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center'
+          flexDirection: isMobile ? 'column' : 'row',
+          justifyContent: isMobile ? 'center' : 'space-between',
+          alignItems: 'center',
+          gap: isMobile ? '16px' : '0'
         }}>
                      <Link to="/" style={{
              display: 'flex',
@@ -69,7 +84,9 @@ function About() {
            </Link>
           <nav style={{
             display: 'flex',
-            gap: '20px'
+            gap: isMobile ? '12px' : '20px',
+            flexWrap: isMobile ? 'wrap' : 'nowrap',
+            justifyContent: 'center'
           }}>
                          <Link to="/" style={{ color: 'rgba(255,255,255,0.8)', textDecoration: 'none' }}>Home</Link>
              <Link to="/about" style={{ color: '#3B82F6', textDecoration: 'none', fontWeight: '600' }}>About</Link>
@@ -89,20 +106,20 @@ function About() {
         <div style={{
           background: 'rgba(31, 41, 55, 0.9)',
           backdropFilter: 'blur(20px)',
-          padding: '60px',
+          padding: isMobile ? '32px' : '60px',
           borderRadius: '20px',
           boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
           animation: 'fadeInUp 1s ease-out',
           border: '1px solid rgba(59, 130, 246, 0.2)'
         }}>
           <h1 style={{
-            fontSize: '42px',
+            fontSize: isMobile ? '32px' : '42px',
             fontWeight: '800',
             background: 'linear-gradient(135deg, #3B82F6 0%, #A855F7 100%)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
             backgroundClip: 'text',
-            marginBottom: '30px',
+            marginBottom: isMobile ? '24px' : '30px',
             textAlign: 'center'
           }}>
             About Idaya Seidu
@@ -111,19 +128,21 @@ function About() {
           {/* Photo and Introduction Section */}
           <div style={{
             display: 'flex',
-            alignItems: 'flex-start',
-            gap: '40px',
-            marginBottom: '40px',
+            flexDirection: isMobile ? 'column' : 'row',
+            alignItems: isMobile ? 'center' : 'flex-start',
+            gap: isMobile ? '24px' : '40px',
+            marginBottom: isMobile ? '32px' : '40px',
             flexWrap: 'wrap'
           }}>
                          {/* Professional Photo */}
              <div style={{
-               flex: '0 0 200px',
-               height: '250px',
+               flex: isMobile ? 'none' : '0 0 200px',
+               width: isMobile ? '180px' : 'auto',
+               height: isMobile ? '220px' : '250px',
                borderRadius: '15px',
                border: '2px solid rgba(59, 130, 246, 0.3)',
                overflow: 'hidden',
-               minWidth: '200px',
+               minWidth: isMobile ? '180px' : '200px',
                boxShadow: '0 10px 25px rgba(0, 0, 0, 0.3)'
              }}>
                              <img
@@ -141,10 +160,11 @@ function About() {
             {/* Introduction Text */}
             <div style={{
               flex: '1',
-              minWidth: '300px',
-              fontSize: '18px',
+              minWidth: isMobile ? '280px' : '300px',
+              fontSize: isMobile ? '16px' : '18px',
               lineHeight: '1.8',
-              color: '#e5e7eb'
+              color: '#e5e7eb',
+              textAlign: isMobile ? 'center' : 'left'
             }}>
               <p style={{ marginBottom: '24px' }}>
                 Welcome! I'm <strong>Idaya Seidu</strong>, a passionate AI researcher and software engineer currently pursuing my <strong>MSc in Information Technology</strong> at Carnegie Mellon University Africa with a 3.70 GPA.
@@ -162,25 +182,25 @@ function About() {
           
           {/* Education & Background */}
           <div style={{
-            marginBottom: '40px',
-            padding: '30px',
+            marginBottom: isMobile ? '32px' : '40px',
+            padding: isMobile ? '24px' : '30px',
             background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(168, 85, 247, 0.05) 100%)',
             borderRadius: '15px',
             border: '1px solid rgba(59, 130, 246, 0.2)'
           }}>
             <h3 style={{
-              fontSize: '24px',
+              fontSize: isMobile ? '20px' : '24px',
               fontWeight: '600',
               color: '#f3f4f6',
-              marginBottom: '20px',
+              marginBottom: isMobile ? '16px' : '20px',
               textAlign: 'center'
             }}>
               Academic Journey
             </h3>
             <div style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-              gap: '20px'
+              gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(300px, 1fr))',
+              gap: isMobile ? '16px' : '20px'
             }}>
               <div>
                 <h4 style={{ fontWeight: '600', color: '#3B82F6', marginBottom: '8px' }}>

@@ -6,9 +6,19 @@ import { useTheme } from '../context/ThemeContext.jsx';
 function Home() {
   const { darkMode, themeClasses, cardClasses, accentColor } = useTheme();
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   
   useEffect(() => {
     setIsLoaded(true);
+    
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
   // Animation classes
@@ -81,7 +91,7 @@ function Home() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '0 16px',
+        padding: isMobile ? '0 12px' : '0 16px',
         paddingTop: '80px'
       }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto', textAlign: 'center' }}>
@@ -121,7 +131,7 @@ function Home() {
             </div>
             
             <h1 style={{
-              fontSize: 'clamp(3rem, 8vw, 6rem)',
+              fontSize: isMobile ? 'clamp(2.5rem, 10vw, 4rem)' : 'clamp(3rem, 8vw, 6rem)',
               fontWeight: '800',
               marginBottom: '16px',
               background: 'linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%)',
@@ -135,7 +145,7 @@ function Home() {
             </h1>
             
             <div style={{
-              fontSize: 'clamp(1.25rem, 3vw, 1.5rem)',
+              fontSize: isMobile ? 'clamp(1rem, 4vw, 1.25rem)' : 'clamp(1.25rem, 3vw, 1.5rem)',
               color: darkMode ? '#d1d5db' : '#4b5563',
               marginBottom: '20px',
               fontWeight: '500'
@@ -144,12 +154,12 @@ function Home() {
             </div>
             
             <p style={{
-              fontSize: 'clamp(1rem, 2.5vw, 1.25rem)',
+              fontSize: isMobile ? 'clamp(0.875rem, 3vw, 1rem)' : 'clamp(1rem, 2.5vw, 1.25rem)',
               color: darkMode ? '#e5e7eb' : '#374151',
               maxWidth: '800px',
               margin: '0 auto 48px auto',
               lineHeight: '1.7',
-              padding: '0 20px',
+              padding: isMobile ? '0 16px' : '0 20px',
               textAlign: 'center'
             }}>
               Building the future of <span style={{
@@ -173,23 +183,23 @@ function Home() {
           }}>
             <div style={{
               display: 'flex',
-              flexDirection: window.innerWidth < 640 ? 'column' : 'row',
-              gap: '24px',
+              flexDirection: isMobile ? 'column' : 'row',
+              gap: isMobile ? '16px' : '24px',
               justifyContent: 'center',
               alignItems: 'center'
             }}>
-              <Link 
+                              <Link 
                 to="/research"
                 style={{
                   background: 'linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%)',
                   color: 'white',
-                  padding: '16px 40px',
+                  padding: isMobile ? '14px 24px' : '16px 40px',
                   borderRadius: '12px',
                   fontWeight: '600',
                   textDecoration: 'none',
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '12px',
+                  gap: isMobile ? '8px' : '12px',
                   boxShadow: '0 10px 25px rgba(0,0,0,0.2)',
                   transition: 'all 0.3s ease',
                   cursor: 'pointer'
@@ -212,13 +222,13 @@ function Home() {
                 style={{
                   border: `2px solid ${darkMode ? '#6b7280' : '#d1d5db'}`,
                   color: darkMode ? '#d1d5db' : '#374151',
-                  padding: '16px 40px',
+                  padding: isMobile ? '14px 24px' : '16px 40px',
                   borderRadius: '12px',
                   fontWeight: '600',
                   textDecoration: 'none',
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '12px',
+                  gap: isMobile ? '8px' : '12px',
                   background: darkMode ? 'rgba(31, 41, 55, 0.5)' : 'rgba(255, 255, 255, 0.7)',
                   backdropFilter: 'blur(10px)',
                   transition: 'all 0.3s ease',
@@ -249,8 +259,9 @@ function Home() {
             <div style={{
               display: 'flex',
               justifyContent: 'center',
-              gap: '32px',
-              marginBottom: '48px'
+              gap: isMobile ? '20px' : '32px',
+              marginBottom: '48px',
+              flexWrap: isMobile ? 'wrap' : 'nowrap'
             }}>
               <a 
                 href="mailto:iseidu@andrew.cmu.edu" 
@@ -277,7 +288,9 @@ function Home() {
                 <Mail size={24} color={darkMode ? '#60a5fa' : '#3b82f6'} />
               </a>
               <a 
-                href="https://linkedin.com/in/idaya-seidu-6a600219" 
+                href="https://www.linkedin.com/in/idaya-seidu-6a6002195/" 
+                target="_blank"
+                rel="noopener noreferrer"
                 style={{
                   padding: '16px',
                   borderRadius: '50%',
@@ -302,6 +315,8 @@ function Home() {
               </a>
               <a 
                 href="https://github.com/Muslimah123" 
+                target="_blank"
+                rel="noopener noreferrer"
                 style={{
                   padding: '16px',
                   borderRadius: '50%',
@@ -332,7 +347,7 @@ function Home() {
             backdropFilter: 'blur(20px)',
             border: `1px solid ${darkMode ? '#374151' : '#e5e7eb'}`,
             borderRadius: '16px',
-            padding: '32px',
+            padding: isMobile ? '24px' : '32px',
             maxWidth: '500px',
             margin: '0 auto',
             boxShadow: '0 25px 50px rgba(0,0,0,0.15)',
@@ -342,9 +357,9 @@ function Home() {
             transitionDelay: '0.7s'
           }}>
             <h2 style={{
-              fontSize: '24px',
+              fontSize: isMobile ? '20px' : '24px',
               fontWeight: '700',
-              marginBottom: '24px',
+              marginBottom: isMobile ? '20px' : '24px',
               background: 'linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
@@ -369,8 +384,8 @@ function Home() {
                   style={{
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '16px',
-                    padding: '16px',
+                    gap: isMobile ? '12px' : '16px',
+                    padding: isMobile ? '12px' : '16px',
                     borderRadius: '12px',
                     transition: 'all 0.3s ease',
                     border: '1px solid transparent',

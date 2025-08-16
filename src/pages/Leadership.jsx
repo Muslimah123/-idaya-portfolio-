@@ -1,8 +1,20 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Users, Code, Heart, Calendar, MapPin, ArrowRight, ExternalLink, Award, BookOpen, Users2 } from 'lucide-react';
 
 function Leadership() {
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
   // Leadership and Activities data
   const activities = [
     {
@@ -70,7 +82,7 @@ function Leadership() {
       minHeight: '100vh',
       background: 'linear-gradient(135deg, #0B1120 0%, #111827 100%)',
       fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-      padding: '20px'
+      padding: isMobile ? '12px' : '20px'
     }}>
       {/* Navigation Header */}
       <header style={{
@@ -81,8 +93,10 @@ function Leadership() {
           maxWidth: '1200px',
           margin: '0 auto',
           display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center'
+          flexDirection: isMobile ? 'column' : 'row',
+          justifyContent: isMobile ? 'center' : 'space-between',
+          alignItems: 'center',
+          gap: isMobile ? '16px' : '0'
         }}>
                      <Link to="/" style={{
              display: 'flex',
