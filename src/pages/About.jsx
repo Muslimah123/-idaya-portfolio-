@@ -126,9 +126,9 @@ function About() {
                minWidth: '200px',
                boxShadow: '0 10px 25px rgba(0, 0, 0, 0.3)'
              }}>
-               <img 
-                 src="/src/components/images/profess.jpg" 
-                 alt="Idaya Seidu - Professional Photo"
+                             <img
+                src="/profess.jpg"
+                alt="Idaya Seidu - Professional Photo"
                  style={{
                    width: '100%',
                    height: '100%',
