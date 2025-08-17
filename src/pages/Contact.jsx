@@ -199,7 +199,7 @@ function Contact() {
                 LinkedIn
               </h3>
               <a 
-                href="https://www.linkedin.com/in/idaya-seidu-6a600219"
+                href="https://www.linkedin.com/in/idaya-seidu-6a6002195/"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{

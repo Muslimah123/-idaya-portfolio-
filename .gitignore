@@ -125,3 +125,24 @@ cypress/screenshots/
 
 # Turbo
 .turbo
+
+# Portfolio specific
+# Backup files
+*.bak
+*.backup
+*.old
+
+# Large media files (if not needed in repo)
+*.mp4
+*.mov
+*.avi
+*.wmv
+
+# Development notes
+notes.md
+TODO.md
+DEVELOPMENT.md
+
+# Local configuration overrides
+config.local.js
+config.local.json

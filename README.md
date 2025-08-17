@@ -1,14 +1,14 @@
-# Idaya's Portfolio Website
+# Idaya Seidu - AI-Augmented Software Engineering Portfolio
 
-A modern, responsive portfolio website built with React, Vite, and Tailwind CSS. This portfolio showcases research work, projects, experience, and publications with a clean, professional design and smooth user experience.
+A modern, responsive portfolio website showcasing research work, projects, experience, and leadership activities. Built with React, Vite, and Tailwind CSS featuring a clean, professional design with smooth user experience and mobile-first responsive design.
 
 ## 🚀 Features
 
 - **Modern Tech Stack**: Built with React 18, Vite, and Tailwind CSS
-- **Responsive Design**: Fully responsive across all device sizes
-- **Dark Mode Support**: Seamless dark/light mode toggle with system preference detection
+- **Fully Responsive**: Mobile-first design that works perfectly on all devices
+- **Dark Mode Default**: Beautiful dark theme with seamless light/dark mode toggle
 - **Smooth Animations**: Engaging micro-interactions and scroll-triggered animations
-- **Performance Optimized**: Fast loading times with code splitting and optimization
+- **Performance Optimized**: Fast loading times with optimized code structure
 - **SEO Friendly**: Optimized meta tags and semantic HTML structure
 - **Accessibility**: WCAG compliant with proper ARIA labels and keyboard navigation
 
@@ -18,28 +18,32 @@ A modern, responsive portfolio website built with React, Vite, and Tailwind CSS.
 idaya-portfolio/
 ├── public/
 │   ├── index.html
-│   ├── favicon.ico
-│   ├── manifest.json
-│   └── assets/
-│       ├── images/
-│       ├── icons/
-│       └── documents/
+│   ├── favicon.png
+│   ├── profess.jpg
+│   └── manifest.json
 ├── src/
 │   ├── components/
-│   │   ├── layout/          # Header, Navigation, Footer, Layout
-│   │   ├── sections/        # Hero, About, Research, Projects, etc.
-│   │   ├── ui/             # Reusable UI components
-│   │   └── features/       # Feature-specific components
-│   ├── hooks/              # Custom React hooks
-│   ├── context/            # React context providers
-│   ├── data/               # Static data and content
-│   ├── utils/              # Utility functions and helpers
-│   ├── styles/             # Global CSS and component styles
-│   ├── App.jsx
-│   ├── App.css
-│   └── index.js
+│   │   ├── Navigation.jsx    # Main navigation component
+│   │   └── images/
+│   │       ├── log.png       # Logo/favicon
+│   │       └── profess.jpg   # Professional photo
+│   ├── context/
+│   │   └── ThemeContext.jsx  # Dark/light mode context
+│   ├── pages/
+│   │   ├── Home.jsx          # Landing page
+│   │   ├── About.jsx         # About section
+│   │   ├── Research.jsx      # Research projects
+│   │   ├── Projects.jsx      # Development projects
+│   │   ├── Experience.jsx    # Work & education timeline
+│   │   ├── Leadership.jsx    # Leadership activities
+│   │   └── Contact.jsx       # Contact information
+│   ├── App.jsx               # Main app component
+│   ├── index.jsx             # Entry point
+│   └── index.css             # Global styles & animations
 ├── package.json
 ├── tailwind.config.js
+├── postcss.config.js
+├── vite.config.js
 ├── README.md
 └── .gitignore
 ```
@@ -48,10 +52,11 @@ idaya-portfolio/
 
 - **Frontend Framework**: React 18
 - **Build Tool**: Vite
-- **Styling**: Tailwind CSS
+- **Styling**: Tailwind CSS + Inline Styles
 - **Language**: JavaScript/JSX
-- **Icons**: Heroicons (via Tailwind)
-- **Deployment**: Vercel/Netlify ready
+- **Icons**: Lucide React
+- **Routing**: React Router DOM
+- **Deployment**: Vercel ready
 
 ## 🚦 Getting Started
 
@@ -64,8 +69,8 @@ idaya-portfolio/
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/idaya-portfolio.git
-   cd idaya-portfolio
+   git clone https://github.com/Muslimah123/-idaya-portfolio-.git
+   cd -idaya-portfolio-
    ```
 
 2. Install dependencies:
@@ -94,74 +99,59 @@ yarn build
 
 The built files will be in the `dist` directory, ready for deployment.
 
-## 📝 Customization
+## 📝 Portfolio Sections
 
-### Personal Information
-
-Update the following files with your personal information:
-
-- `src/data/projects.js` - Your projects and work
-- `src/data/experience.js` - Your work experience
-- `src/data/research.js` - Your research work
-- `src/data/skills.js` - Your technical skills
-- `src/data/publications.js` - Your publications and papers
-- `src/utils/constants.js` - Contact information and metadata
-
-### Styling
-
-- Modify `tailwind.config.js` for theme customization
-- Update `src/styles/` files for custom CSS
-- Adjust colors, fonts, and animations to match your brand
-
-### Images
-
-Add your images to the `public/assets/images/` directory:
-- `profile.jpg` - Your profile photo
-- `projects/` - Project screenshots
-- `research/` - Research-related images
-
-## 📱 Sections
-
-1. **Hero** - Introduction and call-to-action
-2. **About** - Personal story and what you do
-3. **Research** - Research projects and interests
-4. **Projects** - Portfolio of development work
-5. **Experience** - Professional experience timeline
-6. **Skills** - Technical skills with proficiency levels
-7. **Publications** - Academic papers and publications
-8. **Contact** - Contact form and information
+1. **Home** - Introduction, hero section, and quick navigation
+2. **About** - Personal story, education, and technical expertise
+3. **Research** - AI-Augmented Software Engineering research projects
+4. **Projects** - Portfolio of development work and technical projects
+5. **Experience** - Professional experience and education timeline
+6. **Leadership** - Mentoring, community service, and leadership activities
+7. **Contact** - Contact information and contact form
 
 ## 🎨 Design Features
 
-- **Clean, Professional Design**: Modern UI with attention to detail
-- **Smooth Animations**: Scroll-triggered animations and micro-interactions
-- **Dark Mode**: Complete dark mode implementation with user preference storage
-- **Mobile-First**: Responsive design that works on all devices
-- **Performance**: Optimized images, lazy loading, and code splitting
+- **Clean, Professional Design**: Modern UI with glassmorphism effects
+- **Dark Theme Default**: Beautiful dark navy gradient backgrounds (#0B1120 to #111827)
+- **Brand Colors**: Blue-to-purple gradients (#3B82F6 to #A855F7)
+- **Smooth Animations**: CSS keyframe animations and hover effects
+- **Mobile-First**: Responsive design optimized for all screen sizes
+- **Performance**: Optimized images and efficient code structure
 
 ## 🔧 Available Scripts
 
 - `npm run dev` - Start development server
 - `npm run build` - Build for production
 - `npm run preview` - Preview production build
-- `npm run lint` - Run ESLint
-- `npm run lint:fix` - Fix ESLint issues
-- `npm run format` - Format code with Prettier
 
-## 📄 License
+## 📱 Mobile Responsiveness
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+The portfolio is fully responsive with:
+- **Mobile Breakpoint**: 768px
+- **Responsive Navigation**: Stacked on mobile, side-by-side on desktop
+- **Adaptive Layouts**: Single column on mobile, multi-column on desktop
+- **Responsive Typography**: Optimized font sizes for all devices
+- **Touch-Friendly**: Optimized spacing and touch targets for mobile
 
-## 🤝 Contributing
+## 🚀 Deployment
 
-Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/yourusername/idaya-portfolio/issues).
+This portfolio is optimized for deployment on Vercel:
+- Automatic builds from GitHub
+- Optimized for static hosting
+- Fast loading times
+- SEO optimized
 
 ## 📞 Contact
 
-- Email: [contact@example.com](mailto:contact@example.com)
-- LinkedIn: [Your LinkedIn Profile](https://linkedin.com/in/yourprofile)
-- GitHub: [Your GitHub Profile](https://github.com/yourusername)
+- **Email**: iseidu@andrew.cmu.edu
+- **LinkedIn**: [Idaya Seidu](https://www.linkedin.com/in/idaya-seidu-6a6002195/)
+- **GitHub**: [Muslimah123](https://github.com/Muslimah123)
+- **Phone**: +233-207-611-117
+
+## 🎓 About Idaya
+
+Idaya Seidu is an AI-Augmented Software Engineering researcher and software engineer currently pursuing an MSc in Information Technology at Carnegie Mellon University Africa. Her research focuses on developing proactive, context-aware AI collaborators that can understand entire software architectures and autonomously perform high-value engineering tasks.
 
 ---
 
-⭐ Don't forget to star this repo if you found it helpful!
+⭐ **Portfolio Status**: Fully responsive, mobile-optimized, and ready for deployment!
