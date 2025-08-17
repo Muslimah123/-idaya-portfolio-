@@ -164,45 +164,7 @@ function Experience() {
              gap: '12px',
              textDecoration: 'none'
            }}>
-             {/* Logo Circle with Initials */}
-             <div style={{
-               width: '40px',
-               height: '40px',
-               borderRadius: '50%',
-               background: 'linear-gradient(135deg, #3B82F6 0%, #A855F7 100%)',
-               display: 'flex',
-               alignItems: 'center',
-               justifyContent: 'center',
-               fontSize: '18px',
-               fontWeight: '800',
-               color: 'white',
-               boxShadow: '0 4px 12px rgba(59, 130, 246, 0.3)'
-             }}>
-               IS
-             </div>
-             {/* Professional Title */}
-             <div style={{
-               display: 'flex',
-               flexDirection: 'column',
-               alignItems: 'flex-start'
-             }}>
-               <span style={{
-                 fontSize: '18px',
-                 fontWeight: '700',
-                 color: '#3B82F6',
-                 lineHeight: '1.2'
-               }}>
-                 AI Researcher
-               </span>
-               <span style={{
-                 fontSize: '14px',
-                 fontWeight: '500',
-                 color: '#9ca3af',
-                 lineHeight: '1.2'
-               }}>
-                 Software Engineer
-               </span>
-             </div>
+             
            </Link>
           <nav style={{
             display: 'flex',
